@@ -1,0 +1,18 @@
+# Ignoriere Excel-Dateien
+*.xlsx
+
+# Ignoriere temporäre Dateien
+*.log
+*.tmp
+
+# Ignoriere Build-Ordner
+/target/
+
+# Ignoriere Test-Ordner
+/example/
+
+# Ignoriere IDE-Konfigurationsdateien
+*.iml
+.idea/
+.vscode/
+*.eml
