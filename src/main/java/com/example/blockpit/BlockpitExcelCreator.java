@@ -221,7 +221,7 @@ public class BlockpitExcelCreator {
 
     private static String determineMessageType(String subject, String content) {
         if (content.contains("You received") && content.contains("signing up")) {
-            return "Gift-Received";
+            return "Gift";
         }
         if (content.contains("You received") && content.contains("for holding")) {
             return "Staking";
