@@ -462,29 +462,21 @@ public class BlockpitExcelCreator {
         // Verarbeite Datum in UTC
         String dateUTC = convertToUTC(rawDate);
 
-        // Verarbeite die Beträge
-        double feeValue = Double.parseDouble(fee.replace(",", "."));
-        double receivedValue = Double.parseDouble(receivedAmount.replace(",", "."));
-
         // Erstelle Kommentar
-        String comment = walletAddress + " will receive " + String.format("%.6f", receivedValue) + " " + receivedAsset
+        String comment = walletAddress + " will receive " + receivedAmount + " " + receivedAsset
                 + ", see transaction details of " + transactionId;
 
-        String feeFormatted = String.format("%.6f", feeValue);
-        String outgoingAmountFormatted = String.format("%.6f", receivedValue);
-
-        feeFormatted = feeFormatted.replace(",", "."); // Ersetze "," durch "."
-        feeFormatted = replaceAllExceptLast(feeFormatted, "."); // Entferne alle Punkte, außer den letzten
-        outgoingAmountFormatted = outgoingAmountFormatted.replace(",", "."); // Ersetze "," durch "."
-        outgoingAmountFormatted = replaceAllExceptLast(outgoingAmountFormatted, "."); // Entferne alle Punkte, außer den
-                                                                                      // letzten
+        fee = fee.replace(",", "."); // Ersetze "," durch "."
+        fee = replaceAllExceptLast(fee, "."); // Entferne alle Punkte, außer den letzten
+        receivedAmount = receivedAmount.replace(",", "."); // Ersetze "," durch "."
+        receivedAmount = replaceAllExceptLast(receivedAmount, "."); // Entferne alle Punkte, außer den letzten
 
         // Füge Daten zur Liste hinzu
         RowData rowData = new RowData(
                 dateUTC, INTEGRATION_NAME, label, receivedAsset,
-                outgoingAmountFormatted,
+                receivedAmount,
                 "", "",
-                feeAsset, feeFormatted, comment, transactionId);
+                feeAsset, fee, comment, transactionId);
         rowDataList.add(rowData);
     }
 
